@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import glob
 import string
 import hashlib
@@ -1002,7 +1004,9 @@ if __name__ == '__main__':
     if not args:
         parser.print_help()
 
-    for dir in args:
+    dirs = [os.path.abspath(a) for a in args]
+
+    for dir in dirs:
         with Problem(dir) as prob:
             [errors, warnings] = prob.check()
             print "%s tested: %d errors, %d warnings" % (dir, errors, warnings)
